@@ -60,9 +60,9 @@ for j in range (0, len(datasets)):        # specfiy the number of the datasets
                     with open(ExportToFile, 'a',newline='\n') as out:
                         writer = csv.writer(out,delimiter=',')
                         if (Flag==False): # just one time to write the header of the CSV file
-                            header= numpy.concatenate([["Optimizer","Dataset","objfname","Experiment","startTime","EndTime","ExecutionTime","trainAcc", "trainTP","trainFN","trainFP","trainTN", "testAcc", "testTP","testFN","testFP","testTN"],CnvgHeader])
+                            header= numpy.concatenate([["Optimizer","Dataset","objfname","Experiment","startTime","EndTime","ExecutionTime","trainAcc", "trainTP","trainFN","trainFP","trainTN","trainAUC", "testAcc", "testTP","testFN","testFP","testTN","testAUC"],CnvgHeader])
                             writer.writerow(header)
-                        a=numpy.concatenate([[x.optimizer,datasets[j],x.objfname,k+1,x.startTime,x.endTime,x.executionTime,x.trainAcc, x.trainTP,x.trainFN,x.trainFP,x.trainTN, x.testAcc, x.testTP,x.testFN,x.testFP,x.testTN],x.convergence])
+                        a=numpy.concatenate([[x.optimizer,datasets[j],x.objfname,k+1,x.startTime,x.endTime,x.executionTime,x.trainAcc,x.trainTP,x.trainFN,x.trainFP,x.trainTN,x.trainAUC,x.testAcc,x.testTP,x.testFN,x.testFP,x.testTN,x.testAUC],x.convergence])
                         writer.writerow(a)
                     out.close()
                 Flag=True # at least one experiment
