@@ -10,6 +10,7 @@ from sklearn.metrics import confusion_matrix
 #from sklearn.metrics import precision_score
 #from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
+from sklearn import metrics
 import numpy as np
 import neurolab as nl
 import time
@@ -20,7 +21,8 @@ def evaluateNetClassifier(solution,inputs,outputs,net):
     x=solution.bestIndividual
     
     printAcc=[]
-    
+    printAUC=[]
+	
     trainInput=inputs
     trainOutput=outputs
     
@@ -63,17 +65,12 @@ def evaluateNetClassifier(solution,inputs,outputs,net):
     pred=np.clip(pred, 0, 1)
 
     ConfMatrix=confusion_matrix(trainOutput, pred)     
-    
-
-    #print(ConfMatrix)
-    #print(trainOutput)
-    #print(pred)
+    fprauc, tprauc, thresholds = metrics.roc_curve(trainOutput, pred ,pos_label=1)
+    printAUC.append(metrics.auc(fprauc, tprauc))
     time.sleep(5)
     ConfMatrix1D=ConfMatrix.flatten()
-    #print(ConfMatrix1D)
     printAcc.append(accuracy_score(trainOutput, pred,normalize=True)) 
-    
-    classification_results= np.concatenate((printAcc,ConfMatrix1D))
+    classification_results= np.concatenate((printAcc,ConfMatrix1D,printAUC))
     print(classification_results)
     return classification_results
     
