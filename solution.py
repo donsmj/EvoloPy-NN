@@ -25,10 +25,12 @@ class solution:
         self.trainFN=None
         self.trainFP=None
         self.trainTN=None
+        self.trainAUC=None
         self.testAcc=None
         self.testTP=None
         self.testFN=None
         self.testFP=None
+        self.testAUC=None
         self.testTN=None
 
 
