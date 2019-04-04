@@ -73,6 +73,8 @@ def selector(algo,func_details,popSize,Iter,trainDataset,testDataset):
     x.trainFN=trainClassification_results[2]
     x.trainFP=trainClassification_results[3]
     x.trainTN=trainClassification_results[4]
+    x.trainAUC=trainClassification_results[5]
+   
    
     # Evaluate MLP classification model based on the testing set   
     testClassification_results=evalNet.evaluateNetClassifier(x,testInput,testOutput,net)
@@ -80,7 +82,8 @@ def selector(algo,func_details,popSize,Iter,trainDataset,testDataset):
     x.testTP=testClassification_results[1]
     x.testFN=testClassification_results[2]
     x.testFP=testClassification_results[3]
-    x.testTN=testClassification_results[4] 
+    x.testTN=testClassification_results[4]
+    x.testAUC=testClassification_results[5]
     
     
     return x
